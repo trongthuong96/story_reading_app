@@ -1,8 +1,9 @@
 package com.example.lib.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class StoryModel {
+public class StoryModel implements Serializable {
     private Long id;
     private String name;
     private String summaryContent;

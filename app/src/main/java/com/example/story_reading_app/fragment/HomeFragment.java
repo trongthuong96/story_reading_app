@@ -3,10 +3,12 @@ package com.example.story_reading_app.fragment;
 import static com.example.lib.RetrofitClient.getRetrofit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
@@ -19,6 +21,7 @@ import com.example.lib.interfaceRepository.Methods;
 import com.example.lib.model.StoryModel;
 import com.example.story_reading_app.MainActivity;
 import com.example.story_reading_app.R;
+import com.example.story_reading_app.StoryDetailActivity;
 import com.example.story_reading_app.adapter.StoryAdapter;
 
 import java.util.ArrayList;
@@ -44,6 +47,16 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         gdvListStory = getView().findViewById(R.id.gdvListStory);
+
+        gdvListStory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                StoryModel model = (StoryModel) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getActivity(), StoryDetailActivity.class);
+                intent.putExtra("model", model);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

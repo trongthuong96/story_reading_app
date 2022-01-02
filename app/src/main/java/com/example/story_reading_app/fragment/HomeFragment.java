@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment {
         arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
         storyAdapter = new StoryAdapter(getActivity(), R.layout.item_story);
         GetStory();
+        getActivity().setTitle("App Truyện");
     }
 
     // SHow list story

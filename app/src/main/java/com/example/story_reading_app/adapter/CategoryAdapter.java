@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,13 +31,28 @@ public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
         LayoutInflater layoutInflater = this.context.getLayoutInflater();
         View view = layoutInflater.inflate(this.resource, null);
 
-        TextView txtName = view.findViewById(R.id.txtNameCategory);
-        TextView txtDescribes = view.findViewById(R.id.txtDescribes);
-
         CategoryModel model = getItem(position);
-        txtName.setText(model.getName());
-        txtDescribes.setText(model.getDescribes());
 
+        int i = R.layout.item_catagory;
+
+        int j = R.layout.category_layout;
+
+        if(this.resource == R.layout.item_catagory){
+            //khai bao
+            Button btnNameCategory = view.findViewById(R.id.btnNameCategory);
+
+            //gan gia tri
+            btnNameCategory.setText(model.getName());
+
+        }else if(this.resource == R.layout.category_layout){
+            //khai bao
+            TextView txtName = view.findViewById(R.id.txtNameCategory);
+            TextView txtDescribes = view.findViewById(R.id.txtDescribes);
+
+            //gan gia tri
+            txtName.setText(model.getName());
+            txtDescribes.setText(model.getDescribes());
+        }
         return view;
     }
 }

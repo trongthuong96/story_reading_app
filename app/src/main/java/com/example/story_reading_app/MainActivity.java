@@ -43,12 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-    //story
-    StoryAdapter storyAdapter;
-    List<StoryModel> list = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
-    GridView gdvListStory;
-
     //fragment
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_CATEGORY = 1;
@@ -61,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         mappingLayout();
         replateFragment(new HomeFragment());
-        navigationView.getMenu().findItem(R.id.menu_home).setChecked(true);
+        navigationView.getMenu().performIdentifierAction(R.id.menu_home, FRAGMENT_HOME);
 
     }
 
@@ -91,23 +85,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //onclick menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         int id = item.getItemId();
+
         if (id == R.id.menu_home) {
             if(mCurrentFragment != FRAGMENT_HOME){
                 replateFragment(new HomeFragment());
                 mCurrentFragment = FRAGMENT_HOME;
-                navigationView.getMenu().findItem(R.id.menu_home).setChecked(true);
-                navigationView.getMenu().findItem(R.id.menu_category).setChecked(false);
             }
         } else if(id == R.id.menu_category){
             if(mCurrentFragment != FRAGMENT_CATEGORY){
                 replateFragment(new CategoryFragment());
                 mCurrentFragment = FRAGMENT_CATEGORY;
-                navigationView.getMenu().findItem(R.id.menu_category).setChecked(true);
-                navigationView.getMenu().findItem(R.id.menu_home).setChecked(false);
             }
         }
 
+        item.setCheckable(true);
+        item.setChecked(true);
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

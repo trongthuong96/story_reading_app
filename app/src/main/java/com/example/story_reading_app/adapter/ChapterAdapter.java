@@ -6,20 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.lib.model.ChapterModel;
 import com.example.story_reading_app.R;
-import com.example.lib.model.CategoryModel;
 
-public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
+public class ChapterAdapter extends ArrayAdapter<ChapterModel> {
+
     Activity context;
     int resource;
-
-    public CategoryAdapter(@NonNull Context context, int resource) {
+    public ChapterAdapter(@NonNull Context context, int resource) {
         super(context, resource);
         this.context = (Activity) context;
         this.resource = resource;
@@ -31,23 +30,14 @@ public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
         LayoutInflater layoutInflater = this.context.getLayoutInflater();
         View view = layoutInflater.inflate(this.resource, null);
 
-        CategoryModel model = getItem(position);
+        ChapterModel model = getItem(position);
 
-        if(this.resource == R.layout.item_catagory){
+        if(this.resource == R.layout.item_chapter_name){
             //khai bao
-            Button btnNameCategory = view.findViewById(R.id.btnNameCategory);
+            TextView txtChapterItem = view.findViewById(R.id.txtChapterItem);
 
             //gan gia tri
-            btnNameCategory.setText(model.getName());
-
-        }else if(this.resource == R.layout.category_layout){
-            //khai bao
-            TextView txtName = view.findViewById(R.id.txtNameCategory);
-            TextView txtDescribes = view.findViewById(R.id.txtDescribes);
-
-            //gan gia tri
-            txtName.setText(model.getName());
-            txtDescribes.setText(model.getDescribes());
+            txtChapterItem.setText("Chương "+ model.getChapterNumber() + ": " + model.getName());
         }
         return view;
     }

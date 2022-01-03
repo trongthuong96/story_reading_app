@@ -43,6 +43,8 @@ public class StoryDetailActivity extends AppCompatActivity {
     TextView txtStatusDetail;
     TextView txtSummaryDetail;
     RelativeLayout relativeBackground;
+    long id;
+    StoryModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +60,9 @@ public class StoryDetailActivity extends AppCompatActivity {
         relativeBackground = findViewById(R.id.relativeBackground);
 
         Intent intent = getIntent();
-        StoryModel model = (StoryModel) intent.getSerializableExtra("model");
+        model = (StoryModel) intent.getSerializableExtra("model");
 
+        id = model.getId();
         txtNameStoryDetail.setText(model.getName());
         txtAuthorDetail.setText(model.getAuthor());
         txtCateStoryDetail.setText(model.getCategoryName());
@@ -88,6 +91,9 @@ public class StoryDetailActivity extends AppCompatActivity {
     }
 
     public void goToChapter(View view) {
-
+        //model into detail story
+        Intent intent = new Intent(this, ChapterActivity.class);
+        intent.putExtra("modelStory", model);
+        startActivity(intent);
     }
 }

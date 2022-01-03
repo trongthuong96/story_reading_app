@@ -14,11 +14,12 @@
         <Button
             android:id="@+id/btnNameCategory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:textColor="@color/white"
             android:backgroundTint="#FAC2FB"
-            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
             android:text="Xin chào"/>
     </LinearLayout>
 

@@ -51,6 +51,8 @@ public class HomeFragment extends Fragment {
         gdvListStory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //model into detail story
                 StoryModel model = (StoryModel) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getActivity(), StoryDetailActivity.class);
                 intent.putExtra("model", model);

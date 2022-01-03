@@ -2,13 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/home"
+    <item
+        android:title="@string/home"
         android:id="@+id/menu_home"
+        android:layout_gravity="center"
         android:icon="@drawable/ic_baseline_home_24"/>
 
-    <item android:title="@string/category"
+    <item
+        android:title="@string/category"
+        android:layout_gravity="center"
         android:id="@+id/menu_category"
-        android:icon="@drawable/ic_baseline_format_list_bulleted_24">
-    </item>
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"/>
 
 </menu>

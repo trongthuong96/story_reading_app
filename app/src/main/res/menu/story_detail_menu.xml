@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Giới thiệu"
+        android:tooltipText=""
+        android:id="@+id/info_menu"/>
+    <item
+        android:title="Chương truyện"
+        android:id="@+id/chater_menu"/>
+</menu>

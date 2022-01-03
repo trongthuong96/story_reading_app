@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,15 +39,31 @@ public class ChapterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter);
 
+        // lấy biến từ intent story
         Intent intent = getIntent();
         model = (StoryModel) intent.getSerializableExtra("modelStory");
 
+        // list name chapter
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         chapterAdapter = new ChapterAdapter(this, R.layout.item_chapter_name);
         lsvChapter = findViewById(R.id.lsvChapter);
         txtNameStory_ItemChap = findViewById(R.id.txtNameStory_ItemChap);
         txtNameStory_ItemChap.setText(model.getName());
         GetChapter();
+
+        //click chapter content
+        lsvChapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //model into detail chapter
+                ChapterModel model = (ChapterModel) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(ChapterActivity.this, ChapterDetailActivity.class);
+                intent.putExtra("model", model);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     // SHow list chapter

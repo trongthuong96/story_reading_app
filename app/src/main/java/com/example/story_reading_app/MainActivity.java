@@ -16,6 +16,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -56,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mappingLayout();
         replateFragment(new HomeFragment());
         navigationView.getMenu().performIdentifierAction(R.id.menu_home, FRAGMENT_HOME);
-
     }
 
     //mapping
@@ -126,5 +127,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         transaction.replace(R.id.content_frame, fragment);
         transaction.commit();
     }
-
 }

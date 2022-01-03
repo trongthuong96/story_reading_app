@@ -1,5 +1,10 @@
 package com.example.lib.model;
 
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 

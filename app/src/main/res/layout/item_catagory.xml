@@ -20,7 +20,7 @@
             android:backgroundTint="#FAC2FB"
             android:textStyle="bold"
             android:textSize="18dp"
-            android:text="Xin chào"/>
+            android:text="Thể loại"/>
     </LinearLayout>
 
 </LinearLayout>

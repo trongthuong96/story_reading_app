@@ -38,6 +38,13 @@ public class ChapterAdapter extends ArrayAdapter<ChapterModel> {
 
             //gan gia tri
             txtChapterItem.setText("Chương "+ model.getChapterNumber() + ": " + model.getName());
+        } else if (this.resource == R.layout.item_chapter_detail){
+
+            TextView txtChapterNameNumber = view.findViewById(R.id.txtChapterNameNumber);
+            TextView txtChapterContent = view.findViewById(R.id.txtChapterContent);
+
+            txtChapterNameNumber.setText("Chương "+ model.getChapterNumber() + ": " + model.getName());
+            txtChapterContent.setText(model.getContent());
         }
         return view;
     }

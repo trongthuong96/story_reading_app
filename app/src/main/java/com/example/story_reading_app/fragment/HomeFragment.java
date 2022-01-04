@@ -2,7 +2,6 @@ package com.example.story_reading_app.fragment;
 
 import static com.example.lib.RetrofitClient.getRetrofit;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,12 +13,10 @@ import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.LayoutInflaterCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.lib.interfaceRepository.Methods;
 import com.example.lib.model.StoryModel;
-import com.example.story_reading_app.MainActivity;
 import com.example.story_reading_app.R;
 import com.example.story_reading_app.StoryDetailActivity;
 import com.example.story_reading_app.adapter.StoryAdapter;

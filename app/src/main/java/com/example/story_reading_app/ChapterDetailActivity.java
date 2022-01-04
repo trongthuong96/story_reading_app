@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -49,5 +50,9 @@ public class ChapterDetailActivity extends AppCompatActivity {
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvChapterDetail.addItemDecoration(itemDecoration);
+    }
+
+    public void goToBackChapterDetail(View view) {
+        finish();
     }
 }

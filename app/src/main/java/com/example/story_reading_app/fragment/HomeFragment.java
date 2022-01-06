@@ -5,6 +5,7 @@ import static com.example.lib.RetrofitClient.getRetrofit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import com.example.story_reading_app.R;
 import com.example.story_reading_app.StoryDetailActivity;
 import com.example.story_reading_app.adapter.StoryAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class HomeFragment extends Fragment {
     List<StoryModel> list = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     GridView gdvListStory;
+    Intent intentFragment;
 
     @Nullable
     @Override
@@ -56,6 +59,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -65,12 +69,17 @@ public class HomeFragment extends Fragment {
         //story
         arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
         storyAdapter = new StoryAdapter(getActivity(), R.layout.item_story);
-        GetStory();
+        try {
+            GetStory();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         getActivity().setTitle("App Truyện");
     }
 
+
     // SHow list story
-    private void GetStory(){
+    private void GetStory() throws IOException {
 
         Methods methods = getRetrofit().create(Methods.class);
         Call<List<StoryModel>> call = methods.getStory();
@@ -78,7 +87,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<List<StoryModel>> call, Response<List<StoryModel>> response) {
                 list = response.body();
-                for(StoryModel i: list){
+                for(StoryModel i: response.body()){
                     storyAdapter.add(i);
                 }
                 gdvListStory.setAdapter(storyAdapter);

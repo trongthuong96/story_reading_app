@@ -51,13 +51,14 @@ public class CategoryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //story
+        //category
         arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
         adapter = new CategoryAdapter(getActivity(), R.layout.item_catagory);
         GetCategoryName();
         getActivity().setTitle("Thể Loại");
     }
 
+    // SHow list category
     private void GetCategoryName(){
 
         Methods methods = getRetrofit().create(Methods.class);

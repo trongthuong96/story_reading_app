@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Story_reading_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".FindByStoryWithCagoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity

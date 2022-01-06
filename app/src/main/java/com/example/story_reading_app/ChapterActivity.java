@@ -4,7 +4,10 @@ import static com.example.lib.RetrofitClient.getRetrofit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,6 +37,9 @@ public class ChapterActivity extends AppCompatActivity {
     TextView txtNameStory_ItemChap;
     StoryModel model;
 
+    //save offine
+    SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +55,13 @@ public class ChapterActivity extends AppCompatActivity {
         lsvChapter = findViewById(R.id.lsvChapter);
         txtNameStory_ItemChap = findViewById(R.id.txtNameStory_ItemChap);
         txtNameStory_ItemChap.setText(model.getName());
-        GetChapter();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        chapterAdapter.clear();
+        GetChapter();
         //click chapter content
         lsvChapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -59,14 +70,20 @@ public class ChapterActivity extends AppCompatActivity {
                 ChapterModel model = (ChapterModel) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(ChapterActivity.this, ChapterDetailActivity.class);
                 intent.putExtra("model", model);
+
+                //save offline
+                sharedPref = getSharedPreferences("ChapterSave", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                //save key chapter off
+                editor.putInt(model.getStoryId().toString(), model.getChapterNumber()).commit();
+
                 startActivity(intent);
             }
         });
-
-
     }
 
-    // SHow list chapter
+    // get list chapter
     private void GetChapter(){
 
         Methods methods = getRetrofit().create(Methods.class);

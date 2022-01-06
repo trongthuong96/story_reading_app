@@ -97,7 +97,9 @@
                                 android:gravity="center"
                                 android:text="Đọc truyện"
                                 android:textColor="#000"
-                                android:typeface="serif" />
+                                android:typeface="serif"
+                                android:onClick="goToChapterDetail"
+                                tools:ignore="OnClick" />
                         </LinearLayout>
 
                     </LinearLayout>

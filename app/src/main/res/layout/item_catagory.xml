@@ -8,16 +8,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_edt">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnNameCategory"
+        <TextView
+            android:id="@+id/txtNameCategory"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="5dp"
             android:textColor="@color/white"
-            android:backgroundTint="#FAC2FB"
+            android:background="@drawable/botron_edittext"
+            android:gravity="center"
             android:textStyle="bold"
             android:textSize="18dp"
             android:text="Thể loại"/>

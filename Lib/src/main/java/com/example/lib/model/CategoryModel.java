@@ -1,6 +1,8 @@
 package com.example.lib.model;
 
-public class CategoryModel
+import java.io.Serializable;
+
+public class CategoryModel implements Serializable
 {
     private String name;
 

@@ -2,6 +2,8 @@ package com.example.story_reading_app.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,13 @@ public class ChapterAdapter extends ArrayAdapter<ChapterModel> {
 
             //gan gia tri
             txtChapterItem.setText("Chương "+ model.getChapterNumber() + ": " + model.getName());
+
+            //chapter of story read
+            SharedPreferences sharedPref = this.context.getSharedPreferences("ChapterSave", context.MODE_PRIVATE);
+            int chapterNumber = sharedPref.getInt(model.getStoryId().toString(),-1);
+            if(chapterNumber == model.getChapterNumber()){
+                txtChapterItem.setTypeface(Typeface.DEFAULT_BOLD);
+            }
         } else if (this.resource == R.layout.item_chapter_detail){
 
             TextView txtChapterNameNumber = view.findViewById(R.id.txtChapterNameNumber);

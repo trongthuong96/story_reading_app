@@ -11,6 +11,7 @@
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.109375" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/bg_border_inline.xml" value="0.184375" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/bg_edt.xml" value="0.14814814814814814" />
+        <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/botron_edittext.xml" value="0.21128205128205127" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/ic_background_book.xml" value="0.109375" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.2123076923076923" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.109375" />
@@ -20,6 +21,8 @@
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/img_backgound_story.xml" value="0.1" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_chapter.xml" value="0.24398625429553264" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_chapter_detail.xml" value="0.2" />
+        <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_find_by_story_with_cagory.xml" value="0.25" />
+        <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_find_by_story_with_category.xml" value="0.22" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_story_detail.xml" value="0.25" />

@@ -35,10 +35,10 @@ public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
 
         if(this.resource == R.layout.item_catagory){
             //khai bao
-            Button btnNameCategory = view.findViewById(R.id.btnNameCategory);
+            TextView txtNameCategory = view.findViewById(R.id.txtNameCategory);
 
             //gan gia tri
-            btnNameCategory.setText(model.getName());
+            txtNameCategory.setText(model.getName());
 
         }else if(this.resource == R.layout.category_layout){
             //khai bao

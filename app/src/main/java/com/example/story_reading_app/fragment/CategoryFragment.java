@@ -2,10 +2,12 @@ package com.example.story_reading_app.fragment;
 
 import static com.example.lib.RetrofitClient.getRetrofit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -17,7 +19,9 @@ import androidx.fragment.app.Fragment;
 import com.example.lib.interfaceRepository.Methods;
 import com.example.lib.model.CategoryModel;
 import com.example.lib.model.StoryModel;
+import com.example.story_reading_app.FindByStoryWithCategoryActivity;
 import com.example.story_reading_app.R;
+import com.example.story_reading_app.StoryDetailActivity;
 import com.example.story_reading_app.adapter.CategoryAdapter;
 import com.example.story_reading_app.adapter.StoryAdapter;
 
@@ -45,6 +49,17 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         gdvListNameCategory = getView().findViewById(R.id.gdvListNameCategory);
+
+        gdvListNameCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //model into detail cate
+                CategoryModel model = (CategoryModel) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getActivity(), FindByStoryWithCategoryActivity.class);
+                intent.putExtra("model", model);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -69,9 +84,7 @@ public class CategoryFragment extends Fragment {
                 list = response.body();
 
                 for(CategoryModel i: list){
-                    CategoryModel categoryModel = new CategoryModel();
-                    categoryModel.setName(i.getName());
-                    adapter.add(categoryModel);
+                    adapter.add(i);
                 }
                 gdvListNameCategory.setAdapter(adapter);
             }

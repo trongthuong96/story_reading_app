@@ -3,6 +3,7 @@ package com.example.story_reading_app;
 import static com.example.lib.RetrofitClient.getRetrofit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import com.example.lib.interfaceRepository.Methods;
+import com.example.lib.model.CategoryModel;
 import com.example.lib.model.StoryModel;
 import com.example.story_reading_app.adapter.StoryAdapter;
 
@@ -23,70 +24,60 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchActivity extends AppCompatActivity {
+public class FindByStoryWithCategoryActivity extends AppCompatActivity {
 
+    private Toolbar toolbarStoryWithCategory;
     //story
     StoryAdapter storyAdapter;
     ArrayAdapter<String> arrayAdapter;
-    ListView lsvSearch;
+    ListView lsvStoryWithCategory;
     SearchView search_activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_find_by_story_with_category);
 
         //story
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         storyAdapter = new StoryAdapter(this, R.layout.item_search);
+        lsvStoryWithCategory = findViewById(R.id.lsvStoryWithCategory);
 
-        search_activity = findViewById(R.id.search_activity);
-        lsvSearch = findViewById(R.id.lsvSearch);
+        // toobar
+        toolbarStoryWithCategory = findViewById(R.id.toolbarStoryWithCategory);
 
-        // click choose item
-        lsvSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //get model
+        Intent intent = this.getIntent();
+        CategoryModel model = (CategoryModel) intent.getSerializableExtra("model");
+
+        //set title
+        toolbarStoryWithCategory.setTitle(model.getName());
+
+        searchStory(model.getId());
+
+        lsvStoryWithCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //model into detail story
                 StoryModel model = (StoryModel) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(SearchActivity.this, StoryDetailActivity.class);
+                Intent intent = new Intent(FindByStoryWithCategoryActivity.this, StoryDetailActivity.class);
                 intent.putExtra("model", model);
                 startActivity(intent);
             }
         });
-
-        // text show search keyword
-        TextView txtLabelContentSearch = findViewById(R.id.txtLabelContentSearch);
-
-        //search value
-        search_activity.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                storyAdapter.clear();
-                search_activity.clearFocus();
-                txtLabelContentSearch.setText("Nội dung tìm kiếm: "+query);
-                searchStory(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
     }
 
-    // find list search story
-    public void searchStory(String text){
+    // find list search
+    public void searchStory(Integer categoryId){
         Methods methods = getRetrofit().create(Methods.class);
-        Call<List<StoryModel>> call = methods.searchStory(-1, text, text, text);
+        Call<List<StoryModel>> call = methods.searchStory(categoryId, "-1", "-1", "-1"); //-1 is skip
         call.enqueue(new Callback<List<StoryModel>>() {
             @Override
             public void onResponse(Call<List<StoryModel>> call, Response<List<StoryModel>> response) {
                 for(StoryModel item: response.body()){
                     storyAdapter.add(item);
                 }
-                lsvSearch.setAdapter(storyAdapter);
+                lsvStoryWithCategory.setAdapter(storyAdapter);
             }
 
             @Override
@@ -96,8 +87,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    //back
-    public void goToBackSearch(View view) {
+    public void goToBackFindCate(View view) {
         finish();
     }
 }

@@ -64,6 +64,11 @@ public class CategoryInsertOrUpdate extends AppCompatActivity {
             // insert model
 
             try {
+                if(edtNameCateInsert.getText().toString().equals("")){
+                    errorInertOrupdate();
+                    return;
+                }
+
                 categoryModel = new CategoryModel();
                 categoryModel.setName(edtNameCateInsert.getText().toString());
                 categoryModel.setDescribes(edtDescribesInsert.getText().toString());
@@ -101,7 +106,6 @@ public class CategoryInsertOrUpdate extends AppCompatActivity {
                 infoInertOrupdate();
             }catch (Exception e){errorInertOrupdate();}
         }
-
     }
 
     //alertDialog

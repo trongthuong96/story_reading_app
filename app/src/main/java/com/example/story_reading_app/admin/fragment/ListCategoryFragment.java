@@ -19,13 +19,17 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.lib.interfaceRepository.Methods;
 import com.example.lib.model.CategoryModel;
+import com.example.lib.model.DeleteModel;
 import com.example.story_reading_app.FindByStoryWithCategoryActivity;
+import com.example.story_reading_app.MainActivity;
 import com.example.story_reading_app.R;
 import com.example.story_reading_app.adapter.CategoryAdapter;
 import com.example.story_reading_app.admin.CategoryInsertOrUpdate;
+import com.example.story_reading_app.fragment.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +45,6 @@ public class ListCategoryFragment extends Fragment {
     List<CategoryModel> list = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     ListView lsvAdminCategory;
-
-    //delete
-    CheckBox cbCateDeleteItem;
-    List<Boolean> checked;
-    int[] categoryIds;
 
     @Nullable
     @Override
@@ -69,8 +68,29 @@ public class ListCategoryFragment extends Fragment {
             }
         });
 
-        //delete checkbox
-        cbCateDeleteItem = getView().findViewById(R.id.cbCateDeleteItem);
+        // insert button
+        Button btnLsvInsertCate = view.findViewById(R.id.btnLsvInsertCate);
+        btnLsvInsertCate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CategoryInsertOrUpdate.class);
+                startActivity(intent);
+            }
+        });
+
+        // delete button
+        Button btnDeleteCate = getView().findViewById(R.id.btnDeleteCate);
+        btnDeleteCate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Integer> arrayList = adapter.getSelectedChecckedCategory();
+                //Integer categoryId[] = arrayList.toArray(new Integer[arrayList.size()]);
+                int[] categoryId = arrayList.stream().mapToInt(i->i).toArray();
+                DeleteModel model = new DeleteModel();
+                model.setCategoryIds(categoryId);
+                deleteCategory(model);
+            }
+        });
 
     }
 
@@ -115,20 +135,18 @@ public class ListCategoryFragment extends Fragment {
     }
 
     //delete
-    public void deleteCategory(int[] categoryIds){
-        Methods methods = getRetrofit().create(Methods.class);
-        Call<int[]> call =  methods.deleteCategory(categoryIds);
-        call.enqueue(new Callback<int[]>() {
-            @Override
-            public void onResponse(Call<int[]> call, Response<int[]> response) {
+    public void deleteCategory(DeleteModel model){
+       Methods methods = getRetrofit().create(Methods.class);
+       Call<DeleteModel> callDelete = methods.deleteCategory(model);
+        callDelete.enqueue(new Callback<DeleteModel>() {
+           @Override
+           public void onResponse(Call<DeleteModel> call, Response<DeleteModel> response) {
+           }
 
-            }
+           @Override
+           public void onFailure(Call<DeleteModel> call, Throwable t) {
+           }
+       });
 
-            @Override
-            public void onFailure(Call<int[]> call, Throwable t) {
-
-            }
-        });
     }
-
 }

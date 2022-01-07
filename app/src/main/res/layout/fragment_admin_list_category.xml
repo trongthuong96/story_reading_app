@@ -2,12 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,16 +19,14 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnLsvInserCate"
+                android:id="@+id/btnLsvInsertCate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#fff"
-                android:onClick="goToInsertCategory"
                 android:drawableLeft="@drawable/ic_baseline_add_circle_15"
                 android:text="Thêm"
                 android:layout_gravity="center"
-                android:textColor="#000"
-                tools:ignore="OnClick" />
+                android:textColor="#000" />
         </LinearLayout>
 
         <LinearLayout
@@ -40,7 +36,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnDeleteCate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#fff"

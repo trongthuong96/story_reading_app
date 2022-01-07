@@ -3,14 +3,17 @@ package com.example.lib.interfaceRepository;
 
 import com.example.lib.model.CategoryModel;
 import com.example.lib.model.ChapterModel;
+import com.example.lib.model.DeleteModel;
 import com.example.lib.model.StoryModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -30,8 +33,9 @@ public interface Methods {
     Call<CategoryModel> postCategory(@Body CategoryModel model);
 
     //delete category
-    @DELETE("api/category")
-    Call<int[]> deleteCategory(@Body int[] categoryIds);
+    //@DELETE("api/category")
+    @HTTP(method = "DELETE", path = "/api/category", hasBody = true)
+    Call<DeleteModel> deleteCategory(@Body DeleteModel model);
 
    /* ---------------------------------------------------------------------------------*/
 

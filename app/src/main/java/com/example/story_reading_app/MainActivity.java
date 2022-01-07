@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mappingLayout();
+
         replateFragment(new HomeFragment());
         navigationView.getMenu().performIdentifierAction(R.id.menu_home, FRAGMENT_HOME);
 
@@ -142,10 +143,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-
-    //go to category insert or update
-    public void goToInsertCategory(View view) {
-        Intent intent = new Intent(this, CategoryInsertOrUpdate.class);
-        startActivity(intent);
-    }
 }

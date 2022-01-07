@@ -54,6 +54,7 @@ public class ChapterAdapter extends ArrayAdapter<ChapterModel> {
 
             txtChapterNameNumber.setText("Chương "+ model.getChapterNumber() + ": " + model.getName());
             txtChapterContent.setText(model.getContent());
+
         }
         return view;
     }

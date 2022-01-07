@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,6 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.story_reading_app.admin.CategoryInsertOrUpdate;
+import com.example.story_reading_app.admin.fragment.ListCategoryFragment;
 import com.example.story_reading_app.fragment.CategoryFragment;
 import com.example.story_reading_app.fragment.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private HomeFragment homeFragment = new HomeFragment();
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_CATEGORY = 1;
+    private static final int FRAGMENT_ADMIN_LIST_CATE = 3;
 
     private int mCurrentFragment = FRAGMENT_HOME;
 
@@ -81,6 +86,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replateFragment(new CategoryFragment());
                 mCurrentFragment = FRAGMENT_CATEGORY;
             }
+        } else if (id == R.id.menu_admin_list_cate){
+            if (mCurrentFragment != FRAGMENT_ADMIN_LIST_CATE){
+                replateFragment(new ListCategoryFragment());
+                mCurrentFragment = FRAGMENT_ADMIN_LIST_CATE;
+            }
         }
 
         item.setCheckable(true);
@@ -130,5 +140,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    //go to category insert or update
+    public void goToInsertCategory(View view) {
+        Intent intent = new Intent(this, CategoryInsertOrUpdate.class);
+        startActivity(intent);
     }
 }

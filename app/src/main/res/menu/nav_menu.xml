@@ -13,5 +13,15 @@
         android:layout_gravity="center"
         android:id="@+id/menu_category"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"/>
+    <item android:title="Admin" >
+        <menu >
+            <item
+                android:title="DS Thể Loại"
+                android:layout_gravity="center"
+                android:id="@+id/menu_admin_list_cate"/>
+            <item android:title="DS Truyện" />
+        </menu>
+    </item>
+
 
 </menu>

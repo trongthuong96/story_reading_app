@@ -48,6 +48,13 @@ public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
             //gan gia tri
             txtName.setText(model.getName());
             txtDescribes.setText(model.getDescribes());
+
+        } else if(this.resource == R.layout.admin_item_list_category){
+            TextView name = view.findViewById(R.id.txtAdminCateNameItem);
+            TextView describes = view.findViewById(R.id.txtAdminCateDescribesItem);
+
+            name.setText(model.getName());
+            describes.setText(model.getDescribes());
         }
         return view;
     }

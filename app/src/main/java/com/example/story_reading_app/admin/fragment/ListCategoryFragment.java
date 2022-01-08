@@ -138,7 +138,7 @@ public class ListCategoryFragment extends Fragment {
     }
 
     //delete
-    public void deleteCategory(DeleteModel model){
+    private void deleteCategory(DeleteModel model){
        Methods methods = getRetrofit().create(Methods.class);
        Call<DeleteModel> callDelete = methods.deleteCategory(model);
         try
@@ -146,11 +146,12 @@ public class ListCategoryFragment extends Fragment {
             callDelete.enqueue(new Callback<DeleteModel>() {
                 @Override
                 public void onResponse(Call<DeleteModel> call, Response<DeleteModel> response) {
-                    getParentFragment().onStart();
+
                 }
 
                 @Override
                 public void onFailure(Call<DeleteModel> call, Throwable t) {
+
                 }
             });
         }
@@ -158,7 +159,14 @@ public class ListCategoryFragment extends Fragment {
         {
             ex.printStackTrace();
         }
+
+        //clear model on list
+        if(callDelete.isExecuted()){
+            adapter.clearModelList();
+            lsvAdminCategory.deferNotifyDataSetChanged();
+        }
     }
+
 
     //alertDialog
     private void infoInertOrupdate(DeleteModel model){

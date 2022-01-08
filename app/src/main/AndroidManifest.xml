@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Story_reading_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".admin.StoryInsertOrUpdate"
+            android:exported="false" />
+        <activity
             android:name=".admin.CategoryInsertOrUpdate"
             android:exported="false" />
         <activity
@@ -33,7 +36,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"

@@ -18,11 +18,13 @@ import com.example.story_reading_app.R;
 import com.example.lib.model.CategoryModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
     Activity context;
     int resource;
     private ArrayList<Integer> categoryIds = new ArrayList<Integer>();
+    private List<CategoryModel> modelList = new ArrayList<>();
 
     public CategoryAdapter(@NonNull Context context, int resource) {
         super(context, resource);
@@ -65,14 +67,17 @@ public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
             //check box delete
             cbCateDeleteItem.setTag(position);
             cbCateDeleteItem.setChecked(categoryIds.contains(model.getId()));
+            cbCateDeleteItem.setChecked(modelList.contains(model));
             cbCateDeleteItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                     if (!compoundButton.isChecked()) {
                         categoryIds.remove(model.getId());
+                        modelList.remove(model);
                     } else if (compoundButton.isChecked()) {
                         if (!categoryIds.contains(model.getId())) {
                             categoryIds.add(model.getId());
+                            modelList.add(model);
                         }
                     }
                 }
@@ -88,5 +93,12 @@ public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
 
     public void clearSelectedCheckedCategory() {
         categoryIds.clear();
+    }
+
+    //clear model on adapter
+    public void clearModelList(){
+        for (CategoryModel item: modelList){
+            this.remove(item);
+        }
     }
 }

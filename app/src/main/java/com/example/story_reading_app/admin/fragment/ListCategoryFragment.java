@@ -2,6 +2,7 @@ package com.example.story_reading_app.admin.fragment;
 
 import static com.example.lib.RetrofitClient.getRetrofit;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -31,6 +33,7 @@ import com.example.story_reading_app.adapter.CategoryAdapter;
 import com.example.story_reading_app.admin.CategoryInsertOrUpdate;
 import com.example.story_reading_app.fragment.HomeFragment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +91,7 @@ public class ListCategoryFragment extends Fragment {
                 int[] categoryId = arrayList.stream().mapToInt(i->i).toArray();
                 DeleteModel model = new DeleteModel();
                 model.setCategoryIds(categoryId);
-                deleteCategory(model);
+                infoInertOrupdate(model);
             }
         });
 
@@ -108,6 +111,7 @@ public class ListCategoryFragment extends Fragment {
     public void onStart() {
         super.onStart();
         adapter.clear();
+        lsvAdminCategory.setAdapter(null);
         GetCategoryName();
     }
 
@@ -129,7 +133,6 @@ public class ListCategoryFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
-
             }
         });
     }
@@ -138,15 +141,44 @@ public class ListCategoryFragment extends Fragment {
     public void deleteCategory(DeleteModel model){
        Methods methods = getRetrofit().create(Methods.class);
        Call<DeleteModel> callDelete = methods.deleteCategory(model);
-        callDelete.enqueue(new Callback<DeleteModel>() {
-           @Override
-           public void onResponse(Call<DeleteModel> call, Response<DeleteModel> response) {
-           }
+        try
+        {
+            callDelete.enqueue(new Callback<DeleteModel>() {
+                @Override
+                public void onResponse(Call<DeleteModel> call, Response<DeleteModel> response) {
+                    getParentFragment().onStart();
+                }
 
-           @Override
-           public void onFailure(Call<DeleteModel> call, Throwable t) {
-           }
-       });
+                @Override
+                public void onFailure(Call<DeleteModel> call, Throwable t) {
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
 
+    //alertDialog
+    private void infoInertOrupdate(DeleteModel model){
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Thông báo!");
+        alert.setIcon(R.drawable.ic_baseline_info_24);
+        alert.setMessage("Bạn có muốn xóa không?");
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteCategory(model);
+            }
+        });
+        alert.show();
     }
 }

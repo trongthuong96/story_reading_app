@@ -78,17 +78,29 @@ public class CategoryInsertOrUpdate extends AppCompatActivity {
                 call.enqueue(new Callback<CategoryModel>() {
                     @Override
                     public void onResponse(Call<CategoryModel> call, Response<CategoryModel> response) {
+                        if(response.body() != null){
+                            infoInertOrupdate();
+                        } else {
+                            errorInertOrupdate();
+                        }
                     }
                     @Override
                     public void onFailure(Call<CategoryModel> call, Throwable t) {
                     }
                 });
 
-                infoInertOrupdate();
-            }catch (Exception e){errorInertOrupdate();}
+            }catch (Exception e){
+                errorInertOrupdate();
+            }
         } else {
             //update model
             try {
+
+                if(edtNameCateInsert.getText().toString().equals("")){
+                    errorInertOrupdate();
+                    return;
+                }
+
                 categoryModel.setName(edtNameCateInsert.getText().toString());
                 categoryModel.setDescribes(edtDescribesInsert.getText().toString());
 
@@ -97,13 +109,17 @@ public class CategoryInsertOrUpdate extends AppCompatActivity {
                 call.enqueue(new Callback<CategoryModel>() {
                     @Override
                     public void onResponse(Call<CategoryModel> call, Response<CategoryModel> response) {
+                        if(response.body() != null){
+                            infoInertOrupdate();
+                        } else {
+                            errorInertOrupdate();
+                        }
                     }
                     @Override
                     public void onFailure(Call<CategoryModel> call, Throwable t) {
                     }
                 });
 
-                infoInertOrupdate();
             }catch (Exception e){errorInertOrupdate();}
         }
     }

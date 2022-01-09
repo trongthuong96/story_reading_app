@@ -4,6 +4,7 @@ package com.example.lib.interfaceRepository;
 import com.example.lib.model.CategoryModel;
 import com.example.lib.model.ChapterModel;
 import com.example.lib.model.DeleteModel;
+import com.example.lib.model.StatusModel;
 import com.example.lib.model.StoryModel;
 
 import java.util.ArrayList;
@@ -47,7 +48,27 @@ public interface Methods {
     @GET("api/timkiem")
     Call<List<StoryModel>> searchStory(@Query("theloai") Integer categoryId, @Query("tentruyen") String storyName, @Query("tacgia") String author, @Query("tomtat") String summary);
 
+    //insert story
+    @POST("api/story")
+    Call<StoryModel> postStory(@Body StoryModel model);
+
+    //update story
+    @PUT("api/story")
+    Call<StoryModel> putStory(@Body StoryModel model);
+
+    //delete story
+    @HTTP(method = "DELETE", path = "/api/story", hasBody = true)
+    Call<DeleteModel> deleteStory(@Body DeleteModel model);
+
+    /* ---------------------------------------------------------------------------------*/
+
     //list chapter
     @GET("api/chapter/{id}")
     Call<List<ChapterModel>> getChapter(@Path("id") Long id);
+
+    /* ---------------------------------------------------------------------------------*/
+
+    //list status
+    @GET("api/status")
+    Call<List<StatusModel>> getStatus();
 }

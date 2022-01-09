@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.story_reading_app.admin.CategoryInsertOrUpdate;
 import com.example.story_reading_app.admin.fragment.ListCategoryFragment;
+import com.example.story_reading_app.admin.fragment.ListStoryFragment;
 import com.example.story_reading_app.fragment.CategoryFragment;
 import com.example.story_reading_app.fragment.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private HomeFragment homeFragment = new HomeFragment();
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_CATEGORY = 1;
-    private static final int FRAGMENT_ADMIN_LIST_CATE = 3;
+    private static final int FRAGMENT_ADMIN_LIST_CATE = 2;
+    private static final int FRAGMENT_ADMIN_LIST_STORY = 3;
 
     private int mCurrentFragment = FRAGMENT_HOME;
 
@@ -93,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (mCurrentFragment != FRAGMENT_ADMIN_LIST_CATE){
                 replateFragment(new ListCategoryFragment());
                 mCurrentFragment = FRAGMENT_ADMIN_LIST_CATE;
+            }
+        } else if( id == R.id.menu_admin_list_story){
+            if(mCurrentFragment != FRAGMENT_ADMIN_LIST_STORY){
+                replateFragment(new ListStoryFragment());
+                mCurrentFragment = FRAGMENT_ADMIN_LIST_STORY;
             }
         }
 

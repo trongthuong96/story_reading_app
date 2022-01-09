@@ -2,9 +2,6 @@ package com.example.story_reading_app.admin;
 
 import static com.example.lib.RetrofitClient.getRetrofit;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.lib.interfaceRepository.Methods;
 import com.example.lib.model.CategoryModel;
 import com.example.story_reading_app.R;
-
-import java.sql.SQLException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,7 +56,6 @@ public class CategoryInsertOrUpdate extends AppCompatActivity {
 
     //insert or update category
     public void goToInsertOrUpdateCate(View view) {
-
         // check
         if(categoryModel == null){
             // insert model

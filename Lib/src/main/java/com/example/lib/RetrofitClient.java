@@ -7,6 +7,7 @@ public class RetrofitClient {
     private static Retrofit retrofit;
     private static String Base_Url = "https://www.web-service.tk";
     //private static String Base_Url = "http://10.0.2.2:8080/web_service_api_war/";
+    //private static String Base_Url = "http://10.0.2.2:8080/";
     public static String getBase_Url() {
         return Base_Url;
     }

@@ -19,7 +19,15 @@
                 android:title="DS Thể Loại"
                 android:layout_gravity="center"
                 android:id="@+id/menu_admin_list_cate"/>
-            <item android:title="DS Truyện" />
+            <item
+                android:title="DS Truyện"
+                android:id="@+id/menu_admin_list_story"/>
+
+            <item
+                android:id="@+id/menu_admin_list_chap"
+                android:title="DS Chương"
+                android:layout_gravity="center"
+                />
         </menu>
     </item>
 

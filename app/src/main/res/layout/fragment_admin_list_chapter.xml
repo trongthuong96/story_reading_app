@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnLsvInsertStory"
+                android:id="@+id/btnLsvInsertChapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#fff"
@@ -36,7 +36,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnDeleteStory"
+                android:id="@+id/btnDeleteChapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#fff"
@@ -84,7 +84,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/lsvAdminStory"
+            android:id="@+id/lsvAdminChapter"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

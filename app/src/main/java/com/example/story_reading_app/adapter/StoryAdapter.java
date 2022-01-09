@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,12 +15,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.example.lib.model.CategoryModel;
 import com.example.story_reading_app.R;
 import com.example.lib.model.StoryModel;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 public class StoryAdapter extends ArrayAdapter<StoryModel> {
 
     Activity context;
     int resource;
+
+    private ArrayList<Long> storyIds = new ArrayList<Long>();
+    private List<StoryModel> modelList = new ArrayList<>();
 
     public StoryAdapter(@NonNull Context context, int resource) {
         super(context, resource);
@@ -72,7 +84,59 @@ public class StoryAdapter extends ArrayAdapter<StoryModel> {
             }
             summary.setText("Tóm tắt: " + model.getSummaryContent());
             Glide.with(this.context).load(model.getImage()).into(imageView);
+
+        } else if(this.resource == R.layout.admin_item_list_story){
+            //
+            TextView name = view.findViewById(R.id.txtAdminStoryNameItem);
+            TextView date = view.findViewById(R.id.txtAdminStoryDateItem);
+            CheckBox cbStoryDeleteItem = view.findViewById(R.id.cbStoryDeleteItem);
+
+            //
+            StoryModel model = getItem(position);
+            name.setText(model.getName());
+
+            //format date
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String today = formatter.format(model.getDateCreate());
+            date.setText(today);
+
+            //check box delete
+            cbStoryDeleteItem.setTag(position);
+            cbStoryDeleteItem.setChecked(storyIds.contains(model.getId()));
+            cbStoryDeleteItem.setChecked(modelList.contains(model));
+            cbStoryDeleteItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if (!compoundButton.isChecked()) {
+                        storyIds.remove(model.getId());
+                        modelList.remove(model);
+                    } else if (compoundButton.isChecked()) {
+                        if (!storyIds.contains(model.getId())) {
+                            storyIds.add(model.getId());
+                            modelList.add(model);
+                        }
+                    }
+                }
+            });
+
         }
         return view;
     }
+
+    // get category id choose
+    public ArrayList<Long> getSelectedChecckedCategory() {
+        return storyIds;
+    }
+
+    public void clearSelectedCheckedCategory() {
+        storyIds.clear();
+    }
+
+    //clear model on adapter
+    public void clearModelList(){
+        for (StoryModel item: modelList){
+            this.remove(item);
+        }
+    }
+
 }

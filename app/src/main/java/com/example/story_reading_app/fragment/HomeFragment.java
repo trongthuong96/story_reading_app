@@ -34,9 +34,7 @@ public class HomeFragment extends Fragment {
     //story
     StoryAdapter storyAdapter;
     List<StoryModel> list = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
     GridView gdvListStory;
-    Intent intentFragment;
 
     @Nullable
     @Override
@@ -67,7 +65,6 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         //story
-        arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
         storyAdapter = new StoryAdapter(getActivity(), R.layout.item_story);
         try {
             GetStory();

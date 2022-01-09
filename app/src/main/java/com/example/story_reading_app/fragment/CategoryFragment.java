@@ -37,7 +37,6 @@ public class CategoryFragment extends Fragment {
     //category
     CategoryAdapter adapter;
     List<CategoryModel> list = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
     GridView gdvListNameCategory;
 
     @Nullable
@@ -67,7 +66,6 @@ public class CategoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         //category
-        arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
         adapter = new CategoryAdapter(getActivity(), R.layout.item_catagory);
         GetCategoryName();
         getActivity().setTitle("Thể Loại");

@@ -46,7 +46,6 @@ public class ListCategoryFragment extends Fragment {
     //category
     CategoryAdapter adapter;
     List<CategoryModel> list = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
     ListView lsvAdminCategory;
 
     @Nullable
@@ -102,7 +101,6 @@ public class ListCategoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         //category
-        arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
         adapter = new CategoryAdapter(getActivity(), R.layout.admin_item_list_category);
         getActivity().setTitle("Danh Sách Thể Loại");
     }
@@ -116,7 +114,7 @@ public class ListCategoryFragment extends Fragment {
     }
 
     // get list category
-    private void GetCategoryName(){
+    public void GetCategoryName(){
 
         Methods methods = getRetrofit().create(Methods.class);
         Call<List<CategoryModel>> call = methods.getCategory();
@@ -137,6 +135,7 @@ public class ListCategoryFragment extends Fragment {
         });
     }
 
+    //tomorrow fix
     //delete
     private void deleteCategory(DeleteModel model){
        Methods methods = getRetrofit().create(Methods.class);
@@ -146,7 +145,6 @@ public class ListCategoryFragment extends Fragment {
             callDelete.enqueue(new Callback<DeleteModel>() {
                 @Override
                 public void onResponse(Call<DeleteModel> call, Response<DeleteModel> response) {
-
                 }
 
                 @Override
@@ -160,8 +158,11 @@ public class ListCategoryFragment extends Fragment {
             ex.printStackTrace();
         }
 
+        System.out.println(callDelete.request().body().toString());
+
+
         //clear model on list
-        if(callDelete.isExecuted()){
+        if(callDelete.isExecuted() || callDelete.request().isHttps()){
             adapter.clearModelList();
             lsvAdminCategory.deferNotifyDataSetChanged();
         }
@@ -184,7 +185,24 @@ public class ListCategoryFragment extends Fragment {
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                deleteCategory(model);
+                try{
+                    deleteCategory(model);
+                }catch (Exception e){infoWaring();};
+            }
+        });
+        alert.show();
+    }
+
+    //info alert
+    //alertDialog
+    private void infoWaring() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Thông báo!");
+        alert.setIcon(R.drawable.ic_baseline_info_24);
+        alert.setMessage("Không thể xóa vì đã có truyện!");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
             }
         });
         alert.show();

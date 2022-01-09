@@ -82,6 +82,27 @@ public class CategoryAdapter extends ArrayAdapter<CategoryModel> {
                     }
                 }
             });
+        } else if(this.resource == R.layout.admin_spinner_item){
+            TextView name = view.findViewById(R.id.txtNameCateItemSpinner);
+
+            name.setText(model.getName());
+        }
+        return view;
+    }
+
+    //dropdown
+    @Override
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+        LayoutInflater layoutInflater = this.context.getLayoutInflater();
+        View view = layoutInflater.inflate(this.resource, null);
+
+        CategoryModel model = getItem(position);
+
+        if(this.resource == R.layout.admin_spinner_item){
+            TextView name = view.findViewById(R.id.txtNameCateItemSpinner);
+
+            name.setText(model.getName());
         }
         return view;
     }

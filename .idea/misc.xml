@@ -23,6 +23,7 @@
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/ic_menu_book.xml" value="0.109375" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/drawable/img_backgound_story.xml" value="0.1" />
+        <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.140625" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_category_insert_or_update.xml" value="0.33" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_chapter.xml" value="0.24398625429553264" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_chapter_detail.xml" value="0.2" />
@@ -30,6 +31,7 @@
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_find_by_story_with_cagory.xml" value="0.25" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_find_by_story_with_category.xml" value="0.22" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_list_chapter_admin.xml" value="0.25" />
+        <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/activity_splash_screen.xml" value="0.1046875" />
@@ -57,7 +59,7 @@
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/item_chapter_detail.xml" value="0.1984375" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/item_chapter_name.xml" value="0.33" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/item_search.xml" value="0.22853957636566333" />
-        <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/item_story.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/item_story.xml" value="0.27054361567635904" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/nav_header_layout.xml" value="0.25" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/search.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/Trong/Desktop/DoAnAndroid/story_reading_app/app/src/main/res/layout/toolbar_layout.xml" value="0.1984375" />

@@ -6,6 +6,7 @@ import com.example.lib.model.ChapterModel;
 import com.example.lib.model.DeleteModel;
 import com.example.lib.model.StatusModel;
 import com.example.lib.model.StoryModel;
+import com.example.lib.model.UserModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,4 +84,9 @@ public interface Methods {
     //list status
     @GET("api/status")
     Call<List<StatusModel>> getStatus();
+
+    /* ---------------------------------------------------------------------------------*/
+    // find and check user
+    @POST("api/login")
+    Call<UserModel> postUser(@Body UserModel model);
 }

@@ -13,6 +13,13 @@
         android:theme="@style/Theme.Story_reading_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".account.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
+        <activity
             android:name=".admin.ListChapterAdminActivity"
             android:exported="false" />
         <activity

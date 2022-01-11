@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import com.example.lib.interfaceRepository.Methods;
 import com.example.lib.model.CategoryModel;
@@ -115,7 +117,7 @@ public class StoryInsertOrUpdate extends AppCompatActivity {
             btnInsertOrUpdateIU.setText("Sửa");
             name.setText(model.getName());
             author.setText(model.getAuthor());
-            summary.setText(model.getSummaryContent());
+            summary.setText(Html.fromHtml(model.getSummaryContent(), HtmlCompat.FROM_HTML_MODE_LEGACY));
             image.setText(model.getImage());
         }
     }
@@ -185,7 +187,7 @@ public class StoryInsertOrUpdate extends AppCompatActivity {
                 //set model
                 model.setName(name.getText().toString());
                 model.setAuthor(author.getText().toString());
-                model.setSummaryContent(summary.getText().toString());
+                model.setSummaryContent(Html.toHtml(summary.getText(), HtmlCompat.FROM_HTML_MODE_LEGACY));
                 model.setImage(image.getText().toString());
                 model.setStatusId(statusId);
                 model.setCategoryId(cateId);
@@ -218,7 +220,7 @@ public class StoryInsertOrUpdate extends AppCompatActivity {
                 //set model
                 model.setName(name.getText().toString());
                 model.setAuthor(author.getText().toString());
-                model.setSummaryContent(summary.getText().toString());
+                model.setSummaryContent(Html.toHtml(summary.getText(), HtmlCompat.FROM_HTML_MODE_LEGACY));
                 model.setImage(image.getText().toString());
                 model.setStatusId(statusId);
                 model.setCategoryId(cateId);

@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -68,7 +70,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         txtAuthorDetail.setText(model.getAuthor());
         txtCateStoryDetail.setText(model.getCategoryName());
         txtStatusDetail.setText(model.getStatusName());
-        txtSummaryDetail.setText(model.getSummaryContent());
+        txtSummaryDetail.setText(Html.fromHtml(model.getSummaryContent(), HtmlCompat.FROM_HTML_MODE_LEGACY));
         Glide.with(this).load(model.getImage()).into(imgStoryDetail);
 
         Glide.with(this)

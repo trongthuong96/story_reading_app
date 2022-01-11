@@ -1,6 +1,7 @@
 package com.example.story_reading_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,11 +17,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.story_reading_app.account.LoginActivity;
 import com.example.story_reading_app.admin.CategoryInsertOrUpdate;
 import com.example.story_reading_app.admin.fragment.ListCategoryFragment;
 import com.example.story_reading_app.admin.fragment.ListStoryFragment;
 import com.example.story_reading_app.fragment.CategoryFragment;
 import com.example.story_reading_app.fragment.HomeFragment;
+import com.example.story_reading_app.session.SessionUser;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private int mCurrentFragment = FRAGMENT_HOME;
 
+    //account
+    SessionUser sessionUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Make sure this is before calling super.onCreate
@@ -48,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         mappingLayout();
 
+        //hide menu admin
+        sessionUser = new SessionUser(getApplicationContext());
+
+
+        //default fragment
         replateFragment(new HomeFragment());
         navigationView.getMenu().performIdentifierAction(R.id.menu_home, FRAGMENT_HOME);
 
@@ -104,6 +115,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
+        // hide menu nav if not login
+        if(!sessionUser.checkLogin()){
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
+            Menu nav_Menu = navigationView.getMenu();
+            nav_Menu.findItem(R.id.menu_admin).setVisible(false);
+        }else {
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
+            Menu nav_Menu = navigationView.getMenu();
+            nav_Menu.findItem(R.id.menu_admin).setVisible(true);
+        }
+
         item.setCheckable(true);
         item.setChecked(true);
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -138,14 +160,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    // page search
+    //hide menu bar
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem app_bar_logout = menu.findItem(R.id.app_bar_logout);
+        MenuItem app_bar_login = menu.findItem(R.id.app_bar_login);
+        if(!sessionUser.checkLogin()){
+            app_bar_logout.setVisible(false);
+            app_bar_login.setVisible(true);
+        }else {
+            Menu nav_Menu = navigationView.getMenu();
+            app_bar_logout.setVisible(true);
+            app_bar_login.setVisible(false);
+        }
+        return true;
+    }
+
+    // page search, login
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.app_bar_search:
-                Intent intentSearch = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intentSearch);
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
                 break;
+
+            case R.id.app_bar_login:
+                Intent intentLogin = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intentLogin);
+                break;
+
+            case R.id.app_bar_logout:
+                sessionUser.logoutUser();
+
 
             default:
                 break;

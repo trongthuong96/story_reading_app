@@ -2,15 +2,18 @@ package com.example.story_reading_app.fragment;
 
 import static com.example.lib.RetrofitClient.getRetrofit;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +45,7 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         gdvListStory = getView().findViewById(R.id.gdvListStory);
@@ -57,7 +61,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override

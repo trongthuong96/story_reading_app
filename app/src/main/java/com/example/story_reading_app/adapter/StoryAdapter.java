@@ -3,6 +3,7 @@ package com.example.story_reading_app.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.HtmlCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.lib.model.StoryModel;
@@ -84,7 +86,7 @@ public class StoryAdapter extends ArrayAdapter<StoryModel> {
             }else {
                 numChap.setText("Tổng số chương: 0");
             }
-            summary.setText("Tóm tắt: " + model.getSummaryContent());
+            summary.setText("Tóm tắt: " + Html.fromHtml(model.getSummaryContent(), HtmlCompat.FROM_HTML_MODE_LEGACY));
             Glide.with(this.context).load(model.getImage()).into(imageView);
 
         } else if(this.resource == R.layout.admin_item_list_story){

@@ -1,76 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".admin.ChapterInsertOrUpdate">
 
-
-    <TextView
-        android:id="@+id/lblChapNumAdmin"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Số Chương" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/txtChapNumAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Số Chương" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tên Chương" />
+            <TextView
+                android:id="@+id/lblChapNumAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Số Chương" />
 
-    <EditText
-        android:id="@+id/txtChapterNameAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Tên Chương" />
+            <EditText
+                android:id="@+id/txtChapNumAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Số Chương"
+                android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nội Dung" />
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên Chương" />
 
-    <EditText
-        android:id="@+id/txtContentChapterAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Nội Dung" />
+            <EditText
+                android:id="@+id/txtChapterNameAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Tên Chương"
+                android:inputType="textPersonName" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nội Dung" />
 
-        <Button
-            android:id="@+id/btnCloseChapterIU"
-            android:onClick="goToBackChapterIU"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Thoát"
-            tools:ignore="OnClick" />
+            <EditText
+                android:id="@+id/txtContentChapterAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:ems="10"
+                android:hint="Nội Dung"
+                android:inputType="text|textMultiLine" />
 
-        <Button
-            android:id="@+id/btnInsertOrUpdateChapIU"
-            android:onClick="InserOrUpdateChapIU"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Thêm"
-            tools:ignore="OnClick" />
-    </LinearLayout>
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCloseChapterIU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="goToBackChapterIU"
+                    android:text="Thoát"
+                    tools:ignore="OnClick" />
+
+                <Button
+                    android:id="@+id/btnInsertOrUpdateChapIU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="InserOrUpdateChapIU"
+                    android:text="Thêm"
+                    tools:ignore="OnClick" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,10 @@
         android:layout_gravity="center"
         android:id="@+id/menu_category"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"/>
-    <item android:title="Admin" >
+
+    <item
+        android:id="@+id/menu_admin"
+        android:title="Admin" >
         <menu >
             <item
                 android:title="DS Thể Loại"

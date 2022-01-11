@@ -60,6 +60,7 @@ public class ChapterInsertOrUpdate extends AppCompatActivity {
 
             TextView lblChapNumAdmin = findViewById(R.id.lblChapNumAdmin);
 
+            //hide text view
             lblChapNumAdmin.setVisibility(View.GONE);
             txtChapNumAdmin.setVisibility(View.GONE);
 
@@ -85,7 +86,7 @@ public class ChapterInsertOrUpdate extends AppCompatActivity {
                 chapterModel.setChapterNumber(Integer.parseInt(txtChapNumAdmin.getText().toString()));
                 chapterModel.setStoryId(storyId);
                 chapterModel.setName(txtChapterNameAdmin.getText().toString());
-                chapterModel.setContent(txtContentChapterAdmin.getText().toString());
+                chapterModel.setContent(Html.toHtml(txtContentChapterAdmin.getText(),HtmlCompat.FROM_HTML_MODE_LEGACY));
 
                 Methods methods = getRetrofit().create(Methods.class);
                 Call<ChapterModel> call = methods.postChapter(chapterModel);
@@ -120,7 +121,7 @@ public class ChapterInsertOrUpdate extends AppCompatActivity {
                 }
 
                 chapterModel.setName(txtChapterNameAdmin.getText().toString());
-                chapterModel.setContent(txtContentChapterAdmin.getText().toString());
+                chapterModel.setContent(Html.toHtml(txtContentChapterAdmin.getText(),HtmlCompat.FROM_HTML_MODE_LEGACY));
                 //date
                 Timestamp temp = chapterModel.getDateCreate();
                 if(temp != null){

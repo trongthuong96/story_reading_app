@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //fragment
     private HomeFragment homeFragment = new HomeFragment();
+    private CategoryFragment cateFragment = new CategoryFragment();
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_CATEGORY = 1;
     private static final int FRAGMENT_ADMIN_LIST_CATE = 2;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         } else if(id == R.id.menu_category){
             if(mCurrentFragment != FRAGMENT_CATEGORY){
-                replateFragment(new CategoryFragment());
+                replateFragment(cateFragment);
                 mCurrentFragment = FRAGMENT_CATEGORY;
             }
         } else if (id == R.id.menu_admin_list_cate){
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
+        } else {
             super.onBackPressed();
         }
     }

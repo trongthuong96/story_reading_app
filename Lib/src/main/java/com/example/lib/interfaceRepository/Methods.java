@@ -66,6 +66,18 @@ public interface Methods {
     @GET("api/chapter/{id}")
     Call<List<ChapterModel>> getChapter(@Path("id") Long id);
 
+    //insert chapter
+    @POST("api/chapter")
+    Call<ChapterModel> postChapter(@Body ChapterModel model);
+
+    //update chapter
+    @PUT("api/chapter")
+    Call<ChapterModel> putChapter(@Body ChapterModel model);
+
+    //delete chapter
+    @HTTP(method = "DELETE", path = "/api/chapter", hasBody = true)
+    Call<DeleteModel> deleteChapter(@Body DeleteModel model);
+
     /* ---------------------------------------------------------------------------------*/
 
     //list status

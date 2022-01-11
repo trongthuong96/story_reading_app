@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Story_reading_app"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".admin.ListChapterAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.ChapterInsertOrUpdate"
             android:exported="false" />
         <activity

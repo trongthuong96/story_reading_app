@@ -2,10 +2,12 @@ package com.example.story_reading_app.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -15,9 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.example.lib.model.CategoryModel;
-import com.example.story_reading_app.R;
 import com.example.lib.model.StoryModel;
+import com.example.story_reading_app.R;
+import com.example.story_reading_app.admin.ListChapterAdminActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -116,6 +118,17 @@ public class StoryAdapter extends ArrayAdapter<StoryModel> {
                             modelList.add(model);
                         }
                     }
+                }
+            });
+
+            //go to chapter
+            Button btnGoToChapter = (Button) view.findViewById(R.id.btnGoToChapter);
+            btnGoToChapter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), ListChapterAdminActivity.class);
+                    intent.putExtra("model", model);
+                    context.startActivity(intent);
                 }
             });
 

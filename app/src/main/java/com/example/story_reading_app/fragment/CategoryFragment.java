@@ -71,7 +71,7 @@ public class CategoryFragment extends Fragment {
         getActivity().setTitle("Thể Loại");
     }
 
-    // SHow list category
+    // get list category
     private void GetCategoryName(){
 
         Methods methods = getRetrofit().create(Methods.class);
@@ -93,6 +93,7 @@ public class CategoryFragment extends Fragment {
             }
         });
     }
+
 
     /*// SHow list story
     private void GetCategoryName(){

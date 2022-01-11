@@ -2,6 +2,7 @@ package com.example.story_reading_app.admin;
 
 import static com.example.lib.RetrofitClient.getRetrofit;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lib.interfaceRepository.Methods;
@@ -195,6 +197,11 @@ public class StoryInsertOrUpdate extends AppCompatActivity {
                 call.enqueue(new Callback<StoryModel>() {
                     @Override
                     public void onResponse(Call<StoryModel> call, Response<StoryModel> response) {
+                        if(response.body() != null){
+                            infoInertOrupdate();
+                        } else {
+                            errorInertOrupdate();
+                        }
                     }
 
                     @Override
@@ -216,7 +223,12 @@ public class StoryInsertOrUpdate extends AppCompatActivity {
                 model.setStatusId(statusId);
                 model.setCategoryId(cateId);
                 model.setUserId(1L);
-                model.setDateCreate(convertStringToTimestamp(model.getDateCreate().toString()));
+
+                //date
+                Timestamp temp = model.getDateCreate();
+                if(temp != null){
+                    model.setDateCreate(convertStringToTimestamp(temp.toString()));
+                }
 
                 // call api
                 Methods methods = getRetrofit().create(Methods.class);
@@ -224,7 +236,11 @@ public class StoryInsertOrUpdate extends AppCompatActivity {
                 call.enqueue(new Callback<StoryModel>() {
                     @Override
                     public void onResponse(Call<StoryModel> call, Response<StoryModel> response) {
-                        System.out.println(response.code());
+                        if(response.body() != null){
+                            infoInertOrupdate();
+                        } else {
+                            errorInertOrupdate();
+                        }
                     }
 
                     @Override
@@ -249,5 +265,42 @@ public class StoryInsertOrUpdate extends AppCompatActivity {
             System.out.println("Exception :" + e);
             return null;
         }
+    }
+
+    // alertDialog error
+    private void errorInertOrupdate(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Thông báo!");
+        alert.setIcon(R.drawable.ic_baseline_info_24);
+        alert.setMessage("Không được để trống hoặc đã trùng tên!");
+
+        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alert.show();
+    }
+
+    //alertDialog
+    private void infoInertOrupdate(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Thông báo!");
+        alert.setIcon(R.drawable.ic_baseline_info_24);
+        alert.setMessage("Thay đổi thông tin thành công!");
+
+        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alert.show();
+    }
+
+    //close
+    public void goToBackListStoryAdmin(View view) {
+        finish();
     }
 }

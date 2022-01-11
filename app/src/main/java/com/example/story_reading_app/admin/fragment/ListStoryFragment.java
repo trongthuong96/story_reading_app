@@ -19,13 +19,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.lib.interfaceRepository.Methods;
-import com.example.lib.model.CategoryModel;
 import com.example.lib.model.DeleteModel;
 import com.example.lib.model.StoryModel;
 import com.example.story_reading_app.R;
-import com.example.story_reading_app.adapter.CategoryAdapter;
 import com.example.story_reading_app.adapter.StoryAdapter;
-import com.example.story_reading_app.admin.CategoryInsertOrUpdate;
 import com.example.story_reading_app.admin.StoryInsertOrUpdate;
 
 import java.util.ArrayList;

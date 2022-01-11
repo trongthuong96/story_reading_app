@@ -7,6 +7,15 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/txtAdminChapterNumberItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="TextView" />
+
+    <TextView
         android:id="@+id/txtAdminChapterNameItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

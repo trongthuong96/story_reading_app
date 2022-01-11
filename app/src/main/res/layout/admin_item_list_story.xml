@@ -10,7 +10,7 @@
         android:id="@+id/txtAdminStoryNameItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
         android:ellipsize="end"
         android:maxLines="2"
         android:text="TextView" />
@@ -39,5 +39,14 @@
         android:drawableLeft="@drawable/ic_baseline_edit_18"
         android:backgroundTint="#fff" />
 
+    <Button
+        android:id="@+id/btnGoToChapter"
+        android:onClick="goToListChapter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:drawableRight="@drawable/ic_baseline_library_books_18"
+        android:backgroundTint="#fff"
+        android:text=""/>
 
 </LinearLayout>
